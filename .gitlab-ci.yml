@@ -46,15 +46,12 @@ deploy-staging:
     DB_DATABASE: ${DB_DATABASE_DEVELOP}
     DB_HOST: "dev-postgres"
   script:
-    - ls /home/myuser/yaylunch/
     - apk add gettext openssh
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tPubkeyAcceptedKeyTypes +ssh-rsa\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-    - cat docker-compose.yaml | envsubst > node-compose.yml
-    - scp -P ${SSH_PORT} node-compose.yml ${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}/docker-compose.yml
     - ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} "cd ${REMOTE_PATH} && sudo docker compose pull && sudo docker compose up -d --build"
   when: on_success
   tags: 
