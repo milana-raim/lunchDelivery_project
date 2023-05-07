@@ -1,0 +1,54 @@
+image: docker:stable
+
+services:
+  - docker:dind
+
+stages:
+  - build app
+  - build docker
+  - deploy
+
+app-build:
+  stage: build app
+  image: openjdk:16
+  script:
+    - chmod +x mvnw
+    - ./mvnw clean package -DskipTests
+  when: always
+  artifacts:
+    when: on_success
+    paths:
+      - target/
+    expire_in: 2h
+
+docker-build:
+  stage: build docker
+  script:
+    - docker login -u $REGISTRY_USER -p $REGISTRY_PASS $CI_REGISTRY
+    - docker build --cache-from "$CI_REGISTRY_IMAGE:$TAG" -t "$CI_REGISTRY_IMAGE:$TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$TAG"
+  when: on_success
+
+deploy-staging:
+  image: alpine:latest
+  stage: deploy
+  variables:
+    SSH_PORT: ${SSH_PORT_DEVELOP}
+    SSH_HOST: ${SSH_HOST_DEVELOP}
+    SSH_USER: ${SSH_USER_DEVELOP}
+    REMOTE_PATH: ${REMOTE_PATH_DEVELOP}
+    DB_USERNAME: ${DB_USERNAME_DEVELOP}
+    DB_PASSWORD: ${DB_PASSWORD_DEVELOP}
+    DB_DATABASE: ${DB_DATABASE_DEVELOP}
+    DB_HOST: "dev-postgres"
+  script:
+    - apk add gettext openssh
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tPubkeyAcceptedKeyTypes +ssh-rsa\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - cat docker-compose.yaml | envsubst > node-compose.yml
+    - scp -P ${SSH_PORT} node-compose.yml ${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}/docker-compose.yml
+    - ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} "cd ${REMOTE_PATH} && sudo docker compose pull && sudo docker compose up -d --build"
+  when: on_success
