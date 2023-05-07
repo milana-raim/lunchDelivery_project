@@ -20,6 +20,7 @@ app-build:
     paths:
       - target/
     expire_in: 2h
+  tags: docker
 
 docker-build:
   stage: build docker
@@ -28,6 +29,7 @@ docker-build:
     - docker build --cache-from "$CI_REGISTRY_IMAGE:$TAG" -t "$CI_REGISTRY_IMAGE:$TAG" .
     - docker push "$CI_REGISTRY_IMAGE:$TAG"
   when: on_success
+  tags: docker
 
 deploy-staging:
   image: alpine:latest
@@ -52,3 +54,4 @@ deploy-staging:
     - scp -P ${SSH_PORT} node-compose.yml ${SSH_USER}@${SSH_HOST}:${REMOTE_PATH}/docker-compose.yml
     - ssh -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} "cd ${REMOTE_PATH} && sudo docker compose pull && sudo docker compose up -d --build"
   when: on_success
+  tags: docker
