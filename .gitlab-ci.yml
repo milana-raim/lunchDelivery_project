@@ -46,6 +46,7 @@ deploy-staging:
     DB_DATABASE: ${DB_DATABASE_DEVELOP}
     DB_HOST: "dev-postgres"
   script:
+    - ls /home/myuser/yaylunch/
     - apk add gettext openssh
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
