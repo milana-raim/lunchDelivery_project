@@ -21,10 +21,8 @@ import java.util.function.Supplier;
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
-    @Value("${jwt.token.secret}")
     private String secret;
 
-    @Value("${jwt.token.expired}")
     private Long expired;
 
     private final AccountsRepository accountsRepository;

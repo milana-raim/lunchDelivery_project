@@ -1,4 +1,4 @@
-package ru.itis.yaylunch.controllers;
+package ru.itis.yaylunch.controllers.old;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

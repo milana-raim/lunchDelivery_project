@@ -22,6 +22,8 @@ app-build:
     expire_in: 2h
   tags: 
     - docker
+  only:
+    - main
 
 docker-build:
   stage: build docker
@@ -32,6 +34,8 @@ docker-build:
   when: on_success
   tags: 
     - docker
+  only:
+    - main
 
 deploy-staging:
   image: alpine:latest
@@ -56,3 +60,5 @@ deploy-staging:
   when: on_success
   tags: 
     - docker
+  only:
+    - main
