@@ -2,7 +2,7 @@ package ru.itis.yaylunch.dto.mapper;
 
 import org.mapstruct.Mapper;
 import ru.itis.yaylunch.dto.AccountDto;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 
 import java.util.List;
 

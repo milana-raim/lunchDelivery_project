@@ -1,10 +1,11 @@
-package ru.itis.yaylunch.models;
+package ru.itis.yaylunch.models.older;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.yaylunch.models.newer.Account;
 
 import javax.persistence.*;
 import java.util.List;

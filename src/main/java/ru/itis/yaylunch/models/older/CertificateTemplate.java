@@ -1,4 +1,4 @@
-package ru.itis.yaylunch.models;
+package ru.itis.yaylunch.models.older;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;

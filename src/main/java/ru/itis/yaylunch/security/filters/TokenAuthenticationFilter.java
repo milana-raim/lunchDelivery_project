@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import ru.itis.yaylunch.dto.forms.SignInForm;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.repositories.AccountsRepository;
 import ru.itis.yaylunch.security.details.AccountUserDetails;
 import ru.itis.yaylunch.security.jwt.JwtProvider;

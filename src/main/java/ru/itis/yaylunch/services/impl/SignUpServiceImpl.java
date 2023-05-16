@@ -8,10 +8,9 @@ import ru.itis.yaylunch.dto.forms.SignUpForm;
 import ru.itis.yaylunch.dto.mapper.AccountMapper;
 import ru.itis.yaylunch.exceptions.AccountAlreadyExistsException;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.repositories.AccountsRepository;
 import ru.itis.yaylunch.services.SignUpService;
-import ru.itis.yaylunch.util.EmailUtil;
 
 import java.util.Optional;
 import java.util.UUID;

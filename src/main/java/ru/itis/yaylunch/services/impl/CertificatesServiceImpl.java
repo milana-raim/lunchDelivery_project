@@ -8,7 +8,7 @@ import ru.itis.yaylunch.dto.CertificateTemplateDto;
 import ru.itis.yaylunch.dto.forms.CertificateTemplateForm;
 import ru.itis.yaylunch.dto.mapper.CertificateMapper;
 import ru.itis.yaylunch.exceptions.*;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.models.Brand;
 import ru.itis.yaylunch.models.CertificateInstance;
 import ru.itis.yaylunch.models.CertificateTemplate;
@@ -19,7 +19,6 @@ import ru.itis.yaylunch.repositories.CertificateTemplatesRepository;
 import ru.itis.yaylunch.services.BalanceService;
 import ru.itis.yaylunch.services.CertificatesService;
 import ru.itis.yaylunch.services.SecurityService;
-import ru.itis.yaylunch.util.EmailUtil;
 
 import java.util.UUID;
 import java.util.function.Supplier;

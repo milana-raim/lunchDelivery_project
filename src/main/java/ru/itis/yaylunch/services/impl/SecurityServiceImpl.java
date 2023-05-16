@@ -3,7 +3,7 @@ package ru.itis.yaylunch.services.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.security.details.AccountUserDetails;
 import ru.itis.yaylunch.services.SecurityService;
 

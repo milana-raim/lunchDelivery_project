@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.AccountDto;
 import ru.itis.yaylunch.dto.mapper.AccountMapper;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.repositories.AccountsRepository;
 import ru.itis.yaylunch.services.AccountsService;
 
