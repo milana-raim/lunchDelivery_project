@@ -7,7 +7,7 @@ import ru.itis.yaylunch.dto.mapper.AccountMapper;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
 import ru.itis.yaylunch.exceptions.CertificateNotFoundException;
 import ru.itis.yaylunch.exceptions.LowBalanceException;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.models.CertificateTemplate;
 import ru.itis.yaylunch.repositories.AccountsRepository;
 import ru.itis.yaylunch.repositories.CertificateTemplatesRepository;

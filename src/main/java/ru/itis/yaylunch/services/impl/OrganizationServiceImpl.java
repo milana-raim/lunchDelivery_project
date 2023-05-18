@@ -11,7 +11,7 @@ import ru.itis.yaylunch.dto.mapper.OrganizationJoinRequestMapper;
 import ru.itis.yaylunch.dto.mapper.OrganizationMapper;
 import ru.itis.yaylunch.exceptions.ForbiddenException;
 import ru.itis.yaylunch.exceptions.OrganizationNotFoundException;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.models.Organization;
 import ru.itis.yaylunch.models.OrganizationJoinRequest;
 import ru.itis.yaylunch.repositories.AccountsRepository;

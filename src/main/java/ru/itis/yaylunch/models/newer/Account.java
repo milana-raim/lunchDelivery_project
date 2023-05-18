@@ -1,4 +1,4 @@
-package ru.itis.yaylunch.models;
+package ru.itis.yaylunch.models.newer;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
@@ -27,39 +27,33 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
     @Column(name = "email")
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "hash_password")
     private String password;
 
-    @Column(name = "balance")
-    private Long balance;
+    @Column(name = "phone")
+    private String phone;
 
     @Column(name = "confirm_code")
     private String confirmCode;
-
-    @OneToMany(mappedBy = "account")
-    @JsonManagedReference
-    private List<CertificateInstance> certificateInstances;
-
-    @OneToMany(mappedBy = "organization")
-    @JsonManagedReference
-    private List<OrganizationJoinRequest> joinRequests;
-
-    @ManyToOne
-    @JoinColumn(name = "organization_id")
-    private Organization organization;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "account")
+    @JsonManagedReference
+    private List<Client> clients;
+
+    @OneToMany(mappedBy = "account")
+    @JsonManagedReference
+    private List<School> schools;
+
+    @OneToMany(mappedBy = "account")
+    @JsonManagedReference
+    private List<Restaurant> restaurants;
 }

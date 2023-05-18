@@ -7,7 +7,7 @@ import ru.itis.yaylunch.dto.forms.BrandForm;
 import ru.itis.yaylunch.dto.mapper.BrandMapper;
 import ru.itis.yaylunch.exceptions.BrandNotFoundException;
 import ru.itis.yaylunch.exceptions.ForbiddenException;
-import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.newer.Account;
 import ru.itis.yaylunch.models.Brand;
 import ru.itis.yaylunch.repositories.BrandsRepository;
 import ru.itis.yaylunch.services.BrandsService;
