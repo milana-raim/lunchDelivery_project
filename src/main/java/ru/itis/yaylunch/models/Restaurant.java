@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -21,11 +20,11 @@ public class Restaurant {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "account")
+    @JoinColumn(name = "account_id")
     private Account account;
 
     @ManyToOne
-    @JoinColumn(name = "address")
+    @JoinColumn(name = "address_id")
     private Address address;
 
     @OneToMany(mappedBy = "restaurant")

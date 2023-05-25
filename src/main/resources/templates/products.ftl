@@ -21,19 +21,21 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-                <#list products as product>
+                <#list dishes as dish>
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img width="400" height="400" src="/files/${product.pictureId}"/>
+<#--
+                            <img width="400" height="400" src="/files/${dish.pictureId}"/>
+-->
 
                             <div class="card-body">
-                                <p class="card-title">${product.name}</p>
-                                <p class="card-text">${product.maker}</p>
+                                <p class="card-title">${dish.name}</p>
+                                <p class="card-text">${dish.calories}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="/product?productId=${product.id}" class="btn btn-sm btn-outline-secondary">Смотреть</a>
+                                        <a href="/product?productId=${dish.id}" class="btn btn-sm btn-outline-secondary">Смотреть</a>
                                     </div>
-                                    <small class="text-dark">Цена: ${product.price}</small>
+                                    <small class="text-dark">Цена: ${dish.price}</small>
 
                                 </div>
                             </div>

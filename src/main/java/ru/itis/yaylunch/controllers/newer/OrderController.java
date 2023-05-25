@@ -1,38 +1,33 @@
-/*
 package ru.itis.yaylunch.controllers.newer;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.itis.yaylunch.dto.request.OrderRequest;
+import ru.itis.yaylunch.dto.response.OrderResponse;
 import ru.itis.yaylunch.service.OrderService;
-import ru.itis.yaylunch.web.api.generated.OrderApi;
-import ru.itis.yaylunch.web.dto.generated.OrderRequest;
-import ru.itis.yaylunch.web.dto.generated.OrderResponse;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class OrderController implements OrderApi {
+public class OrderController {
     private final OrderService orderService;
 
-    @Override
+    @GetMapping
     public ResponseEntity<List<OrderResponse>> orderGet(Long clintId) {
         return ResponseEntity.ok(orderService.getByClint(clintId));
     }
 
-    @Override
-    public ResponseEntity<Void> orderPatch(OrderRequest orderRequest) {
-        return OrderApi.super.orderPatch(orderRequest);
+    public ResponseEntity<Void> orderPatch(Long id, OrderRequest orderRequest) {
+        orderService.update(orderRequest);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
-    @Override
-    public ResponseEntity<Void> orderPost(OrderRequest orderRequest) {
-        orderService.create(orderRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Long> orderPost(OrderRequest orderRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(orderService.create(orderRequest));
     }
 }
-*/

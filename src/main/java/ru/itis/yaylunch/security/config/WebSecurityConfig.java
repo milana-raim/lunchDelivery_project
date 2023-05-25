@@ -37,7 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         System.out.println(userDetailsService);
         http
-                .cors().and().csrf().disable()
+                .csrf().disable()
                 .rememberMe()
                 .rememberMeParameter("rememberMe")
                 .tokenRepository(tokenRepository())

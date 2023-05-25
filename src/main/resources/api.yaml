@@ -1,0 +1,130 @@
+openapi: "3.0.0"
+info:
+  title: Swagger Yaylunch
+  description: API для отправки и проверки статуса сообщений.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081/
+
+tags:
+  - name: Dish
+    description: Операции с блюдами.
+  - name: Order
+    description: Операции c заказами.
+  - name: Delivery
+    description: Операции c доставками.
+
+paths:
+  /dish:
+    get:
+      tags:
+        - Dish
+      description: Получение списка блюд с фильтрацией по определенным параметрам.
+      parameters:
+        - name: restaurant-id
+          in: query
+          description: Идентификатор для ресторана.
+          required: false
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DishResponse'
+  /order:
+    patch:
+      tags:
+        - Order
+      requestBody:
+        description: Сообщение, которое нужно отправить.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Successful response
+    get:
+      tags:
+        - Order
+      description: Получение списка заказов.
+      parameters:
+        - name: clint-id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderResponse'
+    post:
+      tags:
+        - Order
+      description: Добавление заказа.
+      requestBody:
+        description: Сообщение, которое нужно отправить.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Successful response
+components:
+  schemas:
+    DishResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        calories:
+          type: integer
+        ingredients:
+          type: string
+        fat:
+          type: integer
+        protein:
+          type: integer
+        carbohydrate:
+          type: integer
+        price:
+          type: integer
+    OrderRequest:
+      type: object
+      properties:
+        client-id:
+          type: integer
+          format: int64
+        dishes:
+          type: array
+          items:
+            type: number
+    OrderResponse:
+      type: object
+      properties:
+        client-id:
+          type: integer
+        delivery-id:
+          type: integer
+        state:
+          type: string
+          enum:
+            - READY
+            - CANCELLED
+            - PAID
+            - UNPAID

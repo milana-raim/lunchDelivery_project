@@ -49,6 +49,6 @@ public class AccountUserDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return account.getState().equals(Account.State.CONFIRMED);
+        return true;
     }
 }
