@@ -5,16 +5,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.itis.yaylunch.repositories.AccountsRepository;
+import ru.itis.yaylunch.repositories.AccountRepository;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class AccountUserDetailsService implements UserDetailsService {
-    private final AccountsRepository accountsRepository;
+
+    private final AccountRepository accountsRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return new AccountUserDetails(accountsRepository.findAccountByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("No account with such email")));
+        return new AccountUserDetails(
+                accountsRepository.findAccountByEmail(email)
+                .orElseThrow(
+                        () -> new UsernameNotFoundException("User not found")));
     }
 }

@@ -1,16 +1,16 @@
 package ru.itis.yaylunch.security.details;
 
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.itis.yaylunch.models.newer.Account;
+import ru.itis.yaylunch.models.Account;
+
 
 import java.util.Collection;
 import java.util.Collections;
 
-@Getter
 public class AccountUserDetails implements UserDetails {
+
     private final Account account;
 
     public AccountUserDetails(Account account) {

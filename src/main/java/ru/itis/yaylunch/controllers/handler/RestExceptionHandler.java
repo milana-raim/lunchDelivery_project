@@ -1,3 +1,4 @@
+/*
 package ru.itis.yaylunch.controllers.handler;
 
 import org.springframework.http.HttpStatus;
@@ -62,3 +63,4 @@ public class RestExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ExceptionEntity.builder().message(exception.getMessage()).build());
     }
 }
+*/
