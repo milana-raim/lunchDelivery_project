@@ -36,7 +36,7 @@ public class Client {
     @JoinColumn(name = "school")
     private School school;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "account")
     private Account account;
 

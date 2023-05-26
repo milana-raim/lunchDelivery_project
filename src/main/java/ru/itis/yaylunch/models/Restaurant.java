@@ -23,7 +23,7 @@ public class Restaurant {
     private String name;
     private String content;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
 

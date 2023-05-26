@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface DishPhotoRepository extends JpaRepository<DishPhoto, Long> {
 
-    Optional<DishPhoto> findByPhotoId(String photoId);
 
     List<DishPhoto> findByDish_Id(Long dishId);
 

@@ -1,20 +1,46 @@
 package ru.itis.yaylunch.controllers.newer;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
+import ru.itis.yaylunch.models.Order;
 import ru.itis.yaylunch.service.OrderService;
 
 import java.util.List;
 
-@RestController
+
+@Controller
+@RequestMapping("/order")
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
     private final OrderService orderService;
+
+    @PostMapping("/addDish")
+    public void addDish(@RequestBody AddDishToOrderRequest request) {
+        orderService.addDish(request);
+    }
+
+    @PostMapping("/setStatus/{order-id}")
+    public void setStatus(@RequestParam String status,
+                          @PathVariable(name = "order-id") Long orderId) {
+        orderService.setStatus(orderId, status);
+    }
+
+    @GetMapping("/account")
+    public String getAccountOrders(Model model) {
+        List<OrderResponse> orders = orderService.getAccountOrders();
+        model.addAttribute("orders", orders);
+        return "orders";
+    }
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> orderGet(Long clintId) {

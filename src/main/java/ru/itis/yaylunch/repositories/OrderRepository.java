@@ -17,5 +17,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findAllByDelivery_Restaurant_Id(Long id);
 
     List<Order> findAllByDelivery_Restaurant_Account_Id(Long id);
+    List<Order> findAllByClientSchoolId(Long schoolId);
 
 }

@@ -35,7 +35,7 @@ public class Order {
     @JoinTable(name = "order_dish",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id"))
-    private List<Dish> dishRespons;
+    private List<Dish> dishes;
 
     @Enumerated(value = EnumType.STRING)
     private State state;

@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Setter
 @Getter
@@ -19,10 +20,10 @@ public class DishPhoto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "photo_id")
-    String photoId;
+    @Column(name = "image")
+    private byte[] image;
 
     @ManyToOne
-    @JoinColumn(name = "dish")
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 }

@@ -13,6 +13,10 @@ public class AccountUserDetails implements UserDetails {
 
     private final Account account;
 
+    public Long getId() {
+       return account.getId();
+    }
+
     public AccountUserDetails(Account account) {
         this.account = account;
     }

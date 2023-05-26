@@ -34,6 +34,4 @@ public class Delivery {
     @ManyToOne
     @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
-
-
 }

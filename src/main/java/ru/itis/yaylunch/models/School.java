@@ -23,7 +23,7 @@ public class School {
     @Column(name = "bank_account")
     private String bankAccount;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "account")
     private Account account;
 

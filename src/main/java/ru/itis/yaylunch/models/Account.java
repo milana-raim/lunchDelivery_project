@@ -18,7 +18,7 @@ public class Account {
     }
 
     public enum Role {
-        USER, ORGANIZATION, ADMIN
+        USER, SCHOOL, RESTAURANT, ADMIN
     }
 
     @Id
@@ -43,71 +43,55 @@ public class Account {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "account")
+    @OneToOne(mappedBy = "account")
     @JsonManagedReference
-    private List<Client> clients;
+    private Client client;
 
-    @OneToMany(mappedBy = "account")
+    @OneToOne(mappedBy = "account")
     @JsonManagedReference
-    private List<School> schools;
+    private School schools;
 
-    @OneToMany(mappedBy = "account")
+    @OneToOne(mappedBy = "account")
     @JsonManagedReference
-    private List<Restaurant> restaurants;
+    private Restaurant restaurants;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getConfirmCode() {
         return confirmCode;
-    }
-
-    public void setConfirmCode(String confirmCode) {
-        this.confirmCode = confirmCode;
     }
 
     public State getState() {
         return state;
     }
 
-    public void setState(State state) {
-        this.state = state;
-    }
-
     public Role getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public Client getClient() {
+        return client;
+    }
+
+    public School getSchools() {
+        return schools;
+    }
+
+    public Restaurant getRestaurants() {
+        return restaurants;
     }
 }

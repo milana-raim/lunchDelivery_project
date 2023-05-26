@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.response.DishResponse;
 import ru.itis.yaylunch.exceptions.DishNotFoundException;
+import ru.itis.yaylunch.exceptions.NotFoundException;
 import ru.itis.yaylunch.mapper.DishMapper;
 import ru.itis.yaylunch.models.Dish;
 import ru.itis.yaylunch.repositories.DishRepository;
@@ -25,6 +26,12 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
+    public Dish getEntity(Long id) {
+        return dishRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Dish not found"));
+    }
+
+    @Override
     public List<DishResponse> getAll() {
         return dishMapper.toResponse(dishRepository.findAll());
     }
@@ -32,11 +39,6 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<DishResponse> getAllByRestaurant(Long restaurantId) {
         List<Dish> dishes = dishRepository.findAllByRestaurant_Id(restaurantId);
-        System.out.println(dishes);
-        System.out.println(dishes);
-        System.out.println(dishes);
-        System.out.println(dishes);
-        System.out.println(dishes);
         return dishMapper.toResponse(dishes);
     }
 }

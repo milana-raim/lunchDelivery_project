@@ -2,6 +2,8 @@ package ru.itis.yaylunch.dto.response;
 
 import lombok.Data;
 
+import java.sql.Blob;
+
 @Data
 public class DishResponse {
 
@@ -20,4 +22,6 @@ public class DishResponse {
     private Integer carbohydrate;
 
     private Integer price;
+
+    private byte[] photo;
 }

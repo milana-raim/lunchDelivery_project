@@ -15,7 +15,7 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 
     List<Delivery> findAllByDeliveryDate(Date date);
 
-    Optional<Delivery> findDeliveryByRestaurant_Id(Long id);
+    List<Delivery> findDeliveryByRestaurant_Id(Long id);
 
     Optional<Delivery> findDeliveryByRestaurant_IdAndDeliveryDate(Long id, Date date);
 

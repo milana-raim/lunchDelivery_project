@@ -21,7 +21,6 @@ public class DishController {
     @GetMapping("/{restaurant-id}")
     public String dishGet(@PathVariable(name = "restaurant-id") Long restaurantId, Model model) {
         List<DishResponse> dishes = dishService.getAllByRestaurant(restaurantId);
-        System.out.println(dishes);
         model.addAttribute("dishes", dishes);
         return "products";
     }
