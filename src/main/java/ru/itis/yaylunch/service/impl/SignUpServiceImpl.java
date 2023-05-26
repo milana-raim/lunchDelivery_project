@@ -23,8 +23,6 @@ public class SignUpServiceImpl implements SignUpService {
     public void signUp(SignUpForm form) {
         Account account = Account.builder()
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
-                .firstName(form.getFirstName())
-                .lastName(form.getLastName())
                 .password(passwordEncoder.encode(form.getPassword()))
                 .role(Account.Role.USER)
                 .state(Account.State.NOT_CONFIRMED)
