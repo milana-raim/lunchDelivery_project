@@ -13,11 +13,15 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@Data
 public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String name;
+    private String content;
 
     @ManyToOne
     @JoinColumn(name = "account_id")
@@ -34,4 +38,14 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant")
     @JsonManagedReference
     private List<Dish> dishRespons;
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", address=" + address +
+                '}';
+    }
 }

@@ -12,7 +12,7 @@ public class SignInController {
     @GetMapping
     public String getSignInPage(Authentication authentication) {
         if (authentication != null) {
-            return "redirect:/";
+            return "redirect:/organizations";
         }
 
         return "sign_in";
