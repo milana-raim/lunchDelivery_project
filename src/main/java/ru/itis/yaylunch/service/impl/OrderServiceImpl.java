@@ -73,19 +73,25 @@ public class OrderServiceImpl implements OrderService {
     public void addDish(AddDishToOrderRequest request) {
         Order order = orderRepository.findById(request.getOrderId())
                 .orElseThrow(() -> new NotFoundException("Order not found"));
-
         Dish dish = dishService.getEntity(request.getDishId());
-
         order.getDishes().add(dish);
-
         orderRepository.save(order);
     }
 
     @Override
     public void setStatus(Long orderId, String status) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new NotFoundException("Order not found"));
         if (status.equals(Order.State.PAID.toString())) {
-
+            order.setState(Order.State.PAID);
+        } else if (status.equals(Order.State.UNPAID.toString())) {
+            order.setState(Order.State.UNPAID);
+        } else if (status.equals(Order.State.CANCELLED.toString())) {
+            order.setState(Order.State.CANCELLED);
+        } else if (status.equals(Order.State.READY.toString())) {
+            order.setState(Order.State.READY);
         }
+        orderRepository.save(order);
     }
 
 
