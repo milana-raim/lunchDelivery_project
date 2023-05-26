@@ -17,7 +17,7 @@
 
         </ul>
 
-        <form class="d-flex" action="/account" method="get">
+        <form class="d-flex" action="/profile" method="get">
             <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
         </form>
     </div>

@@ -41,6 +41,9 @@ public class Dish {
     @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
 
+    @ManyToMany
+    private List<Basket> baskets;
+
     @ToString.Exclude
     @OneToMany(mappedBy = "dish", fetch = FetchType.LAZY)
     private List<DishPhoto> photos;

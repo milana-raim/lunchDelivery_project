@@ -3,6 +3,7 @@ package ru.itis.yaylunch.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
+@Data
 public class Account {
     public enum State {
         NOT_CONFIRMED, CONFIRMED, DELETED, BANNED
@@ -33,6 +35,12 @@ public class Account {
 
     @Column(name = "phone")
     private String phone;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "confirm_code")
     private String confirmCode;
@@ -93,5 +101,20 @@ public class Account {
 
     public Restaurant getRestaurants() {
         return restaurants;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", confirmCode='" + confirmCode + '\'' +
+                ", state=" + state +
+                ", role=" + role +
+                '}';
     }
 }

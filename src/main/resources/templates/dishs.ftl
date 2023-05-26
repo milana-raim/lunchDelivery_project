@@ -17,7 +17,7 @@
 
         </ul>
 
-        <form class="d-flex" action="/account" method="get">
+        <form class="d-flex" action="/profile" method="get">
             <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
         </form>
     </div>
@@ -47,6 +47,12 @@
                             <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
                             <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
                             <h5 class="card-title pricing-card-title">Pricce: ${dish.price}</h5>
+
+                            <br>
+
+                            <a href = "/basket/addDish?dishId=${dish.id}">
+                            <h5 class="card-title pricing-card-title">Add to order</h5>
+                            </a>
                         </div>
                     </div>
                 </div>

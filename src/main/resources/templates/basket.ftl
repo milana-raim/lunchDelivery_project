@@ -1,55 +1,65 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.88.1">
-    <title>Basket</title>
-
-    <link href="/resources/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/resources/css/style.css" rel="stylesheet">
-
-    <script src="/resources/js/jquery.js"></script>
-    <script src="/resources/js/ajakss.js"></script>
-
+    <meta charset="UTF-8">
+    <title>YayLunch</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">YayLunch</a>
 
-<a href="/profile" class="button1">Назад</a>
-<main class="text-center">
-    <h2 class="mt-5">Корзина</h2>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/organizations">Корзина</a>
+            </li>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        </ul>
 
-                <#list basket as product>
-                    <div id = "${product.id}" class="col">
-                        <div class="card shadow-sm">
-                            <img width="400" height="400" src="/files/${product.pictureId}"/>
+        <form class="d-flex" action="/profile" method="get">
+            <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
+        </form>
+    </div>
+    </div>
+</nav>
 
-                            <div class="card-body">
-                                <p class="card-title">${product.name}</p>
-                                <p class="card-text">${product.maker}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button class="btn btn-sm btn-outline-secondary" id="btn-add-to-liked" onclick="deleteFromBasket(${product.id})">Удалить</button>
-                                        <button class="btn btn-sm btn-outline-secondary" id="btn-add-to-liked" onclick="addToLiked(${product.id})">Добавить в избранное</button>
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <#list dishs as dish>
+
+            <div class="col-8">
+                <div class="card-deck mb-3 text-center">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <div class="row justify-content-center">
+
+                                    <div class="col-3">
+                                        <h4 class="my-0 font-weight-normal">${dish.name} </h4>
                                     </div>
-                                    <small class="text-dark">Цена: ${product.price}</small>
 
-                                </div>
                             </div>
                         </div>
-                    </div>
-                </#list>
 
+                        <div class="card-body">
+                            <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
+                            <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
+                            <h5 class="card-title pricing-card-title">Pricce: ${dish.price}</h5>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <a href="/order" class="btn btn-sm btn-outline-secondary">Оформить заказ</a>
+
+            <br>
+        </#list>
     </div>
-</main>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
