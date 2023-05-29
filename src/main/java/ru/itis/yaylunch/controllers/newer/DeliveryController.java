@@ -1,6 +1,6 @@
 package ru.itis.yaylunch.controllers.newer;
 
-import lombok.RequiredArgsConstructor;
+/*import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,4 +21,4 @@ public class DeliveryController {
         List<DeliveryResponse> deliveries = deliveryService.getAll(authentication);
         return "delivery";
     }
-}
+}*/

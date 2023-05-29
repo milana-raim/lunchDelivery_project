@@ -13,8 +13,7 @@
             ${user.firstName} ${user.lastName}
         </a>
 
-
-
+        <#if user.role == "USER">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/basket">Корзина</a>
@@ -22,10 +21,32 @@
             <li class="nav-item">
                 <a class="nav-link" href="/organizations">Рестораны</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/order/account">Прошлые заказы</a>
+            </li>
 
         </ul>
+        <#elseif user.role == "SCHOOL">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/order/account">Заказы на получение</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/clients">Список учеников</a>
+            </li>
 
+        </ul>
+        <#elseif user.role == "RESTAURANT">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/order/account">Заказы на приготовление</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dish">Список блюд</a>
+            </li>
 
+        </ul>
+        </#if>
         <form class="d-flex" action="/logout" method="post">
             <button class="btn btn-outline-success" type="submit">Выйти</button>
         </form>

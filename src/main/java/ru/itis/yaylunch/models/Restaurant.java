@@ -33,7 +33,7 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant")
     @JsonManagedReference
-    private List<Delivery> deliveries;
+    private List<Order> orders;
 
     @OneToMany(mappedBy = "restaurant")
     @JsonManagedReference

@@ -6,6 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,7 +20,7 @@ import java.util.List;
 public class Order {
 
     public enum State {
-        READY, CANCELLED, PAID, UNPAID
+        READY, CANCELLED, PAID, UNPAID, DELIVERED
     }
 
     @Id
@@ -28,9 +31,6 @@ public class Order {
     @JoinColumn(name = "client")
     private Client client;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Delivery delivery;
-
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "order_dish",
             joinColumns = @JoinColumn(name = "order_id"),
@@ -39,4 +39,14 @@ public class Order {
 
     @Enumerated(value = EnumType.STRING)
     private State state;
+
+    @Column(name = "delivery_date")
+    private LocalDateTime deliveryDate;
+
+    @Column(name = "preference")
+    private String preference;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant")
+    private Restaurant restaurant;
 }

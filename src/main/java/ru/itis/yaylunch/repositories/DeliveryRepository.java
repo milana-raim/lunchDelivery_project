@@ -1,6 +1,6 @@
 package ru.itis.yaylunch.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+/*import org.springframework.data.jpa.repository.JpaRepository;
 import ru.itis.yaylunch.models.Delivery;
 
 import java.sql.Date;
@@ -19,4 +19,4 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 
     Optional<Delivery> findDeliveryByRestaurant_IdAndDeliveryDate(Long id, Date date);
 
-}
+}*/

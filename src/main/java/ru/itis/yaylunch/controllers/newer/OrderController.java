@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
+import ru.itis.yaylunch.exceptions.AccountNotFoundException;
+import ru.itis.yaylunch.models.Account;
 import ru.itis.yaylunch.models.Order;
+import ru.itis.yaylunch.service.AccountService;
 import ru.itis.yaylunch.service.OrderService;
 
 import java.util.List;
@@ -23,6 +26,7 @@ import java.util.List;
 @Slf4j
 public class OrderController {
     private final OrderService orderService;
+    private final AccountService accountService;
 
     @PostMapping("/addDish")
     public void addDish(@RequestBody AddDishToOrderRequest request) {
@@ -39,7 +43,15 @@ public class OrderController {
     public String getAccountOrders(Model model) {
         List<OrderResponse> orders = orderService.getAccountOrders();
         model.addAttribute("orders", orders);
+        Account account = accountService.getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+        model.addAttribute("user", account);
         return "orders";
+    }
+
+    @PostMapping("/new")
+    public void newOrder(Model model) {
+
     }
 
     @GetMapping

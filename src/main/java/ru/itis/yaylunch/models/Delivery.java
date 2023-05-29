@@ -1,6 +1,6 @@
 package ru.itis.yaylunch.models;
 
-import lombok.AllArgsConstructor;
+/*import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,4 +34,4 @@ public class Delivery {
     @ManyToOne
     @JoinColumn(name = "restaurant")
     private Restaurant restaurant;
-}
+}*/

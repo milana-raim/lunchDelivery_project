@@ -63,7 +63,7 @@
             <div class="row justify-content-center">
                 <div class="text-center">
 
-                    <a href="/">
+                    <a href="/order/new">
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Оформить заказ</button>
                     </a>
                 </div>

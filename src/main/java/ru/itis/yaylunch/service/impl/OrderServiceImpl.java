@@ -10,7 +10,6 @@ import ru.itis.yaylunch.exceptions.AccountNotFoundException;
 import ru.itis.yaylunch.exceptions.NotFoundException;
 import ru.itis.yaylunch.mapper.OrderMapper;
 import ru.itis.yaylunch.models.Account;
-import ru.itis.yaylunch.models.Client;
 import ru.itis.yaylunch.models.Dish;
 import ru.itis.yaylunch.models.Order;
 import ru.itis.yaylunch.repositories.OrderRepository;
@@ -42,7 +41,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderResponse> getByClint(Long clintId) {
-        return orderMapper.toResponse(orderRepository.findAllByClient_Id(clintId));
+        return orderMapper.toResponse(orderRepository.findAllByClient_Account_Id(clintId));
     }
 
     @Override
@@ -56,15 +55,15 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(AccountNotFoundException::new);
         if (account.getRole().equals(Account.Role.SCHOOL)) {
             log.info("received list orders for school");
-            return orderMapper.toResponse(orderRepository.findAllByClientSchoolId(account.getId()));
+            return orderMapper.toResponse(orderRepository.findAllByClientSchool_Account_Id(account.getId()));
         }
         if (account.getRole().equals(Account.Role.USER)) {
             log.info("received list orders for user");
-            return orderMapper.toResponse(orderRepository.findAllByClient_Id(account.getId()));
+            return orderMapper.toResponse(orderRepository.findAllByClient_Account_Id(account.getId()));
         }
         if (account.getRole().equals(Account.Role.RESTAURANT)) {
             log.info("received list orders for the restaurant");
-            return orderMapper.toResponse(orderRepository.findAllByDelivery_Restaurant_Id(account.getId()));
+            return orderMapper.toResponse(orderRepository.findAllByRestaurant_Account_Id(account.getId()));
         }
         return Collections.emptyList();
     }
