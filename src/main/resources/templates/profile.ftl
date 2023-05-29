@@ -20,13 +20,13 @@
                 <a class="nav-link" aria-current="page" href="/basket">Корзина</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/organizations">Мои организации</a>
+                <a class="nav-link" href="/organizations">Рестораны</a>
             </li>
 
         </ul>
 
 
-        <form class="d-flex" action="/signOut" method="post">
+        <form class="d-flex" action="/logout" method="post">
             <button class="btn btn-outline-success" type="submit">Выйти</button>
         </form>
     </div>
@@ -37,14 +37,14 @@
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Ваш личный кабинет</h1>
-    <p class="lead">Здесь вы можете добавить организации и редактировать заказ</p>
+    <p class="lead">Здесь вы можете редактировать свои данные</p>
 </div>
 
 <br>
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
 
-    <#if user.role == "USER">
+<#--    <#if user.role == "USER">
         <p class="lead">Выбрать роль</p>
 
         <form class="form-center-content" action="/signOut" method="post">
@@ -53,7 +53,7 @@
                 <label class="btn btn-secondary" for="option1">Представитель образовательного учреждения</label>
 
                 <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                <label class="btn btn-secondary" for="option2">Представитель организации общественного питания</label>
+                <label class="btn btn-secondary" for="option2">Представитель ресторана общественного питания</label>
             </div>
 
             <br>
@@ -66,7 +66,7 @@
 
         <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
         <label class="btn btn-secondary" for="option1">${user.role}</label>
-    </#if>
+    </#if>-->
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.yaylunch.models.Account;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +32,12 @@ public class SignUpForm {
 
     @NotBlank
     private String password;
+
+    @NotBlank
+    private Account.Role role;
+
+    @NotBlank
+    private String phone;
 
     @Email
     @NotBlank

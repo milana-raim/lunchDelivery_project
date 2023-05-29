@@ -12,7 +12,7 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/organizations">Организации</a>
+                <a class="nav-link" aria-current="page" href="/organizations">Рестораны</a>
             </li>
 
         </ul>

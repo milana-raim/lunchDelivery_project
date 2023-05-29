@@ -29,15 +29,21 @@
                     <br>
                     <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Фамилия" required autofocus>
                     <br>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                    <input type="text" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
                     <br>
-                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="text" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                     <br>
-                    <input id="phoneNumber" name="phoneNumber" class="form-control" placeholder="Phone" required>
+                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone" required>
+                    <br>
+                        <p>Выберите, кем Вы являеетесь</p>
+                        <input type="radio" id="role" name="role" value="USER" placeholder="Пользователь" checked required > Пользователь
+                        <br>
+                        <input type="radio" id="role" name="role" value="SCHOOL" placeholder="Представитель учебного заведения" required > Представитель учебного заведения
+                        <br>
+                        <input type="radio" id="role" name="role" value="RESTAURANT" placeholder="Представитель ресторана общественного питания" required > Представитель ресторана общественного питания
                     <br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
                 </form>
-
                 <br>
                 <a href="/sign-in" class="text">Войти</a>
             </div>

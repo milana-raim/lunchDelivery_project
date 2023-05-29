@@ -22,9 +22,12 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public void signUp(SignUpForm form) {
         Account account = Account.builder()
+                .firstName(form.getFirstName())
+                .lastName(form.getLastName())
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
                 .password(passwordEncoder.encode(form.getPassword()))
-                .role(Account.Role.USER)
+                .role(form.getRole())
+                .phone(form.getPhone())
                 .state(Account.State.NOT_CONFIRMED)
                 .build();
 
