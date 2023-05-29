@@ -78,4 +78,20 @@ public class BasketServiceImpl implements BasketService {
 
         return basket1;
     }
+
+    @Override
+    public void deleteDish(Long dishId) {
+        Account account = accountService.getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+        Optional<Basket> basket = basketRepository.findByAccount_Id(account.getId());
+        Basket basket1;
+        Dish dish = dishRepository.getById(dishId);
+        if(basket.isPresent()) {
+            basket1 = basket.get();
+            basket1.getDishes().remove(dish);
+            basketRepository.save(basket1);
+        }
+
+    }
+
 }

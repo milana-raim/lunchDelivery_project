@@ -27,9 +27,15 @@ public class BasketController {
     public String addDish(@RequestParam("dishId") Long dishId) {
 
         basketService.addDish(dishId);
-        return "redirect:/profile";
+        return "redirect:/basket";
     }
 
+    @GetMapping("/deleteDish")
+    public String deleteDish(@RequestParam("dishId") Long dishId) {
+
+        basketService.deleteDish(dishId);
+        return "redirect:/basket";
+    }
 
     @GetMapping
     public String getBasket(Model model) {

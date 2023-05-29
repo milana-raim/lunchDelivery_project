@@ -9,7 +9,7 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">YayLunch</a>
-        <a class="navbar-brand" href="/account">
+        <a class="navbar-brand" href="/profile">
             ${user.firstName} ${user.lastName}
         </a>
 

@@ -12,7 +12,7 @@
 
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/organizations">Блюда</a>
+                <a class="nav-link active" aria-current="page" href="/organizations">Рестораны</a>
             </li>
 
         </ul>
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
                             <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
-                            <h5 class="card-title pricing-card-title">Pricce: ${dish.price}</h5>
+                            <h5 class="card-title pricing-card-title">Price: ${dish.price}</h5>
 
                             <br>
 

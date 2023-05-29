@@ -11,4 +11,5 @@ import java.util.List;
 public interface BasketService {
     void addDish(Long  dishId);
     Basket getByAccount();
+    void deleteDish(Long dishId);
 }
