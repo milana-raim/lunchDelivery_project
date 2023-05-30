@@ -23,7 +23,7 @@ public class School {
     @Column(name = "bank_account")
     private String bankAccount;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account")
     private Account account;
 

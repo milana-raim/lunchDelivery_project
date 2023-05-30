@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <a class="navbar-brand" href="/">YayLunch</a>
         <a class="navbar-brand" href="/profile">
-            ${user.firstName} ${user.lastName}
+            ${user.fullAccountName}
         </a>
 
         <#if user.role == "USER">

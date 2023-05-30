@@ -36,7 +36,7 @@ public class Client {
     @JoinColumn(name = "school")
     private School school;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account")
     private Account account;
 

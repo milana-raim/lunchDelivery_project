@@ -36,12 +36,6 @@ public class Account {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
     @Column(name = "confirm_code")
     private String confirmCode;
 
@@ -57,51 +51,11 @@ public class Account {
 
     @OneToOne(mappedBy = "account")
     @JsonManagedReference
-    private School schools;
+    private School school;
 
     @OneToOne(mappedBy = "account")
     @JsonManagedReference
     private Restaurant restaurants;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getConfirmCode() {
-        return confirmCode;
-    }
-
-    public State getState() {
-        return state;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public School getSchools() {
-        return schools;
-    }
-
-    public Restaurant getRestaurants() {
-        return restaurants;
-    }
 
     @Override
     public String toString() {
@@ -110,8 +64,6 @@ public class Account {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", confirmCode='" + confirmCode + '\'' +
                 ", state=" + state +
                 ", role=" + role +
