@@ -44,7 +44,6 @@ public class SignUpServiceImpl implements SignUpService {
                     .account(account)
                     .name(form.getName())
                     .build();
-            restaurantRepository.save(newRestaurant);
             account.setRestaurants(newRestaurant);
         } else if (form.getRole().equals(Account.Role.SCHOOL)) {
             School newSchool = School
@@ -52,7 +51,6 @@ public class SignUpServiceImpl implements SignUpService {
                     .account(account)
                     .name(form.getName())
                     .build();
-            schoolRepository.save(newSchool);
             account.setSchool(newSchool);
         } else {
             Client newCLint = Client
@@ -61,7 +59,6 @@ public class SignUpServiceImpl implements SignUpService {
                     .lastName(form.getLastName())
                     .account(account)
                     .build();
-            clientRepository.save(newCLint);
             account.setClient(newCLint);
         }
 

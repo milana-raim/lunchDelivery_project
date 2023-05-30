@@ -1,10 +1,7 @@
 package ru.itis.yaylunch.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Data
+@Getter
+@Setter
 public class Account {
     public enum State {
         NOT_CONFIRMED, CONFIRMED, DELETED, BANNED
@@ -45,15 +43,15 @@ public class Account {
     @Enumerated(value = EnumType.STRING)
     private Role role;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(mappedBy = "account", cascade = {CascadeType.ALL})
     @JsonManagedReference
     private Client client;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(mappedBy = "account", cascade = {CascadeType.ALL})
     @JsonManagedReference
     private School school;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne(mappedBy = "account", cascade = {CascadeType.ALL})
     @JsonManagedReference
     private Restaurant restaurants;
 
