@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.request.SetRoleRestaurantRequest;
 import ru.itis.yaylunch.dto.request.SetRoleSchoolRequest;
+import ru.itis.yaylunch.dto.response.ProfileInfoResponse;
+import ru.itis.yaylunch.exceptions.AccountNotFoundException;
+import ru.itis.yaylunch.mapper.AccountMapper;
 import ru.itis.yaylunch.models.Account;
 import ru.itis.yaylunch.models.Restaurant;
 import ru.itis.yaylunch.models.School;
@@ -29,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
     private final AddressService addressService;
     private final SchoolService schoolService;
     private final RestaurantService restaurantService;
+    private final AccountMapper accountMapper;
 
     @Override
     public Optional<Account> getCurrentAccountFromSecurityContext() {
@@ -55,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
                 .build();
 
         newSchool = schoolService.save(newSchool);
-        account.setSchools(newSchool);
+        account.setSchool(newSchool);
 
         accountRepository.save(account);
     }
@@ -76,5 +80,13 @@ public class AccountServiceImpl implements AccountService {
         account.setRestaurants(newRestaurant);
 
         accountRepository.save(account);
+    }
+
+    @Override
+    public ProfileInfoResponse getCurrentProfileInfoResponse() {
+        Account account = getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+
+        return accountMapper.toProfileInfoResponse(account);
     }
 }

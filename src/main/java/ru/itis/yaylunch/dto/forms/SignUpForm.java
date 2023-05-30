@@ -30,6 +30,10 @@ public class SignUpForm {
     @NotBlank
     private String lastName;
 
+    @Size(min = 4, max = 20)
+    @NotBlank
+    private String name;
+
     @NotBlank
     private String password;
 

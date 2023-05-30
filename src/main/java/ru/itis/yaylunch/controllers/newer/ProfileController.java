@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.itis.yaylunch.dto.response.ProfileInfoResponse;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
 import ru.itis.yaylunch.models.Account;
 import ru.itis.yaylunch.service.AccountService;
@@ -19,10 +20,8 @@ public class ProfileController {
 
     @GetMapping
     public String getProfilePage(Authentication authentication, Model model) {
-        Account account = accountService.getCurrentAccountFromSecurityContext()
-                .orElseThrow(AccountNotFoundException::new);
-
-        model.addAttribute("user", account);
+        ProfileInfoResponse profileInfoResponse = accountService.getCurrentProfileInfoResponse();
+        model.addAttribute("user", profileInfoResponse);
 
         return "profile";
     }
