@@ -166,7 +166,7 @@
         <br>
         Информация о ресторане:
         <br>
-        <input type="text" name="content" id = "content" class="form-control" <#if user.content??><#else>required</#if> placeholder=<#if user.content??>"${user.content?html}"></#if>>
+        <input type="text" name="content" id = "content" class="form-control" <#if user.content??><#else>required</#if> placeholder=<#if user.content??>"${user.content?html}"</#if>>
         <br>
         Страна:
         <br>

@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/accounts/**").hasAuthority("ADMIN")
                 .antMatchers("/order/setStatus/**").hasAuthority("RESTAURANT")
                 .antMatchers("/order/setStatus/**").hasAuthority("SCHOOL")
+                .antMatchers("/clients").hasAuthority("SCHOOL")
                 .and()
                 .formLogin()
                 .loginPage("/sign-in")
