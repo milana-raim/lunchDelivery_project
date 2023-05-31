@@ -45,13 +45,20 @@
                             <h5 class="card-title pricing-card-title">Комментарий к заказу: ${order.preference}</h5>
                             <br>
                             <#if user.role == "RESTAURANT">
-                                <a href="/order/setStatus/${order.id}?status=READY">
-                                    <h5 class="card-title pricing-card-title">Готов</h5>
-                                </a>
+                                <#if order.state != "READY">
+
+                                    <a href="/order/setStatus/${order.id}?status=READY">
+                                        <h5 class="card-title pricing-card-title">Готов</h5>
+                                    </a>
+                                </#if>
+
                             <#elseif user.role == "SCHOOL">
-                                <a href="/order/setStatus/${order.id}?status=DELIVERED">
-                                    <h5 class="card-title pricing-card-title">Доставлен</h5>
-                                </a>
+                                <#if order.state != "DELIVERED">
+                                    <a href="/order/setStatus/${order.id}?status=DELIVERED">
+                                        <h5 class="card-title pricing-card-title">Доставлен</h5>
+                                    </a>
+                                </#if>
+
                             </#if>
                         </div>
                     </div>

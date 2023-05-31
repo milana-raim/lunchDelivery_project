@@ -11,6 +11,7 @@ import ru.itis.yaylunch.models.Client;
 @Mapper(componentModel = "spring")
 public interface AccountMapper {
     @Mapping(target = "password", ignore = true)
+    @Mapping(source = "phone", target = "phone")
     Account toEntity(SignUpForm signUpForm);
 
     @Mapping(source = "account", target = "fullAccountName", qualifiedByName = "fullName")

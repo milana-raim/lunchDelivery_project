@@ -6,37 +6,46 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.yaylunch.models.Account;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SignUpForm {
-    @Size(min = 4, max = 20)
-    @NotBlank
+@Data
+public class ProfileForm {
+
     private String firstName;
 
-    @Size(min = 4, max = 20)
-    @NotBlank
     private String lastName;
 
-    @Size(min = 4, max = 20)
-    @NotBlank
     private String name;
 
-    @NotBlank
-    private String password;
-
-    @NotBlank
     private Account.Role role;
 
-    @NotBlank
     private String phone;
 
-    @Email
-    @NotBlank
     private String email;
+
+    private String className;
+
+    private Integer grade;
+
+    private String clientSchoolName;
+
+    private Long clientSchoolId;
+
+    private String country;
+
+    private String city;
+
+    private String street;
+
+    private String house;
+
+    private String postalCode;
+
+    private String content;
 }

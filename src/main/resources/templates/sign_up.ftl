@@ -51,7 +51,7 @@
                     <br>
                     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
                     <br>
-                    <input type="text" name="phoneNumber" class="form-control" placeholder="Phone" required>
+                    <input type="text" name="phone" class="form-control" placeholder="Phone" required>
                     <br>
                     <div id="client-name">
                         <input type="text" id = "firstName" name="firstName" class="form-control"  placeholder="Имя"  >

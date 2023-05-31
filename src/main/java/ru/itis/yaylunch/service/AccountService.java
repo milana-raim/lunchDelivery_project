@@ -1,5 +1,6 @@
 package ru.itis.yaylunch.service;
 
+import ru.itis.yaylunch.dto.forms.ProfileForm;
 import ru.itis.yaylunch.dto.request.SetRoleRestaurantRequest;
 import ru.itis.yaylunch.dto.request.SetRoleSchoolRequest;
 import ru.itis.yaylunch.dto.response.ProfileInfoResponse;
@@ -14,5 +15,7 @@ public interface AccountService {
 
     void setRoleRestaurant(SetRoleRestaurantRequest setRoleRestaurantRequest);
 
-    ProfileInfoResponse getCurrentProfileInfoResponse();
+    ProfileForm getCurrentProfileInfoResponse();
+
+    void updateProfile(ProfileForm form);
 }
