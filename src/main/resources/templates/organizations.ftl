@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="card-body">
-                            <h5 class="card-title pricing-card-title">${rest.content}</h5>
+                            <h5 class="card-title pricing-card-title"> <#if rest.content??>"${rest.content?html}"</#if></h5>
                         </div>
                     </div>
                 </div>
