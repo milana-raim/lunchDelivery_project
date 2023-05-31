@@ -52,6 +52,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/dish">Список блюд</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dish/new">Добавить новое блюдо</a>
+                </li>
 
             </ul>
         </#if>

@@ -35,6 +35,7 @@ public class SignUpServiceImpl implements SignUpService {
     @Override
     public void signUp(SignUpForm form) {
         Account account = accountMapper.toEntity(form);
+        account.setPhone(form.getPhone());
         account.setPassword(passwordEncoder.encode(form.getPassword()));
         account.setState(Account.State.CONFIRMED);
 
@@ -61,7 +62,7 @@ public class SignUpServiceImpl implements SignUpService {
                     .build();
             account.setClient(newCLint);
         }
-
+        System.out.println(account.getPhone());
         log.info(form.getPassword());
         log.info(account.toString());
         Account account1 = accountsRepository.save(account);

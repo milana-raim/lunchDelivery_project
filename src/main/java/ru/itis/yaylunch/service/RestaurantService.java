@@ -4,4 +4,6 @@ import ru.itis.yaylunch.models.Restaurant;
 
 public interface RestaurantService {
     Restaurant save(Restaurant restaurant);
+
+    Restaurant getById(Long restaurantId);
 }

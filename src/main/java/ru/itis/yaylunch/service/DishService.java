@@ -1,6 +1,7 @@
 package ru.itis.yaylunch.service;
 
 
+import ru.itis.yaylunch.dto.request.NewDishRequest;
 import ru.itis.yaylunch.dto.response.DishResponse;
 import ru.itis.yaylunch.models.Dish;
 
@@ -14,4 +15,6 @@ public interface DishService {
     List<DishResponse> getAll();
 
     List<DishResponse> getAllByRestaurant(Long restaurantId);
+
+    void addDish(NewDishRequest dishRequest);
 }

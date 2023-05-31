@@ -3,6 +3,7 @@ package ru.itis.yaylunch.mapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import ru.itis.yaylunch.dto.request.NewDishRequest;
 import ru.itis.yaylunch.dto.response.DishResponse;
 import ru.itis.yaylunch.models.Dish;
 import ru.itis.yaylunch.models.DishPhoto;
@@ -26,4 +27,6 @@ public interface DishMapper {
         }
         return photos.get(0).getImage();
     }
+
+    Dish toEntity(NewDishRequest newDishRequest);
 }
