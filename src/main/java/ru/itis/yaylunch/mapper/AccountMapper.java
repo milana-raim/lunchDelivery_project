@@ -24,7 +24,7 @@ public interface AccountMapper {
                 return account.getSchool().getName();
             }
             case RESTAURANT -> {
-                return account.getRestaurants().getName();
+                return account.getRestaurant().getName();
             }
             case USER -> {
                 Client client = account.getClient();

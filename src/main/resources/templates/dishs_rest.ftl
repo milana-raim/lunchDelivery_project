@@ -22,6 +22,7 @@
             <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
         </form>
     </div>
+    </div>
 </nav>
 
 <br>
@@ -55,9 +56,11 @@
                                     <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
                                     <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
                                     <h5 class="card-title pricing-card-title">Price: ${dish.price}</h5>
+
                                     <br>
-                                    <a href="/basket/addDish?dishId=${dish.id}">
-                                        <h5 class="card-title pricing-card-title">Add to order</h5>
+
+                                    <a href="/dish/edit/${dish.id}">
+                                        <h5 class="card-title pricing-card-title">Редактировать</h5>
                                     </a>
                                 </div>
                             </div>
@@ -65,7 +68,6 @@
                     </div>
                 </div>
             </div>
-
             <br>
         </#list>
     </div>

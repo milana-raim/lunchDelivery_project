@@ -1,6 +1,8 @@
 package ru.itis.yaylunch.dto.response;
 
 import lombok.Data;
+import org.apache.commons.io.monitor.FileEntry;
+import ru.itis.yaylunch.models.PhotoEntity;
 
 import java.sql.Blob;
 
@@ -23,5 +25,5 @@ public class DishResponse {
 
     private Integer price;
 
-    private byte[] photo;
+    private PhotoEntity photo;
 }

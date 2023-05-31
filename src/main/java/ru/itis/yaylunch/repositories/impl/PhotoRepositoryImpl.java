@@ -1,3 +1,4 @@
+/*
 package ru.itis.yaylunch.repositories.impl;
 
 
@@ -61,3 +62,4 @@ public class PhotoRepositoryImpl implements PhotoRepository {
     }
 }
 
+*/

@@ -11,13 +11,12 @@ import ru.itis.yaylunch.exceptions.NotFoundException;
 import ru.itis.yaylunch.mapper.DishMapper;
 import ru.itis.yaylunch.models.Account;
 import ru.itis.yaylunch.models.Dish;
+import ru.itis.yaylunch.models.PhotoEntity;
 import ru.itis.yaylunch.models.Restaurant;
 import ru.itis.yaylunch.repositories.DishRepository;
 import ru.itis.yaylunch.service.AccountService;
 import ru.itis.yaylunch.service.DishService;
-import ru.itis.yaylunch.service.RestaurantService;
 
-import java.nio.channels.AcceptPendingException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -50,6 +49,8 @@ public class DishServiceImpl implements DishService {
     @Override
     public List<DishResponse> getAllByRestaurant(Long restaurantId) {
         List<Dish> dishes = dishRepository.findAllByRestaurant_Id(restaurantId);
+        System.out.println("disssshes");
+        dishes.forEach(dish -> System.out.println(dish.getPhoto() == null));
         return dishMapper.toResponse(dishes);
     }
 
@@ -61,8 +62,22 @@ public class DishServiceImpl implements DishService {
         if (!account.getRole().equals(Account.Role.RESTAURANT)) {
             throw new ForbiddenException("");
         }
-        Restaurant restaurant = account.getRestaurants();
+        Restaurant restaurant = account.getRestaurant();
         newDish.setRestaurant(restaurant);
         dishRepository.save(newDish);
+    }
+
+    @Override
+    public List<DishResponse> getAllByRestaurantRole() {
+        Account account = accountService.getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+        return dishMapper.toResponse(dishRepository.findAllByRestaurant_Id(account.getRestaurant().getId()));
+    }
+
+    @Override
+    public PhotoEntity getImage(Long dishId) {
+        Dish dish = dishRepository.findById(dishId)
+                .orElseThrow(DishNotFoundException::new);
+        return dish.getPhoto();
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.forms.ProfileForm;
 import ru.itis.yaylunch.dto.request.SetRoleRestaurantRequest;
 import ru.itis.yaylunch.dto.request.SetRoleSchoolRequest;
-import ru.itis.yaylunch.dto.response.ProfileInfoResponse;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
 import ru.itis.yaylunch.mapper.AccountMapper;
 import ru.itis.yaylunch.models.*;
@@ -80,7 +79,7 @@ public class AccountServiceImpl implements AccountService {
                 .build();
 
         newRestaurant = restaurantService.save(newRestaurant);
-        account.setRestaurants(newRestaurant);
+        account.setRestaurant(newRestaurant);
 
         accountRepository.save(account);
     }
@@ -121,7 +120,7 @@ public class AccountServiceImpl implements AccountService {
                 profile.setPostalCode(school.getAddress().getPostalCode());
             }
         } else if (account.getRole().equals(RESTAURANT)) {
-            Restaurant restaurant = account.getRestaurants();
+            Restaurant restaurant = account.getRestaurant();
             profile = ProfileForm.builder()
                     .role(account.getRole())
                     .name(restaurant.getName())
@@ -204,7 +203,7 @@ public class AccountServiceImpl implements AccountService {
             }
             schoolRepository.save(school);
         } else if (account.getRole().equals(RESTAURANT)) {
-            Restaurant restaurant = account.getRestaurants();
+            Restaurant restaurant = account.getRestaurant();
             Address address = new Address();
             if (!form.getName().isBlank()) {
                 restaurant.setName(form.getName());

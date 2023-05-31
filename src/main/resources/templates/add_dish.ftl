@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Добавить блюдо</title>
     <link rel="stylesheet" href="/resources/css/style.css">
     <link href="/resources/css/sign-in.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
         <div class="col-5">
             <div class="text-center">
-                <form class="form-add-dish" method="post" action="/dish/new">
+                <form enctype="multipart/form-data" class="form-add-dish" method="post" action="/dish/new">
                     <h1 class="h3 mb-3 font-weight-normal">Добавить блюдо</h1>
                     <br>
                     <input type="text" id="email" name="name" class="form-control" placeholder="Название блюда" required autofocus>
@@ -41,6 +41,8 @@
                     <input type="text" name="protein" class="form-control" placeholder="Углеводы" required>
                     <br>
                     <input type="text" name="price" class="form-control" placeholder="Цена" required>
+                    <br>
+                    <input type="file" name="photo" class="form-control" required>
                     <br>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Добавить</button>
                 </form>

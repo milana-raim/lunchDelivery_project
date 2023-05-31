@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -53,7 +52,7 @@ public class Account {
 
     @OneToOne(mappedBy = "account", cascade = {CascadeType.ALL})
     @JsonManagedReference
-    private Restaurant restaurants;
+    private Restaurant restaurant;
 
     @Override
     public String toString() {

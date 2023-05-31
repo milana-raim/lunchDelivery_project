@@ -1,30 +1,34 @@
 package ru.itis.yaylunch.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
+@Table(name = "photos_entity")
 public class PhotoEntity {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "type")
     private String type;
 
-    private String size;
+    @Column(name = "size")
+    private Long size;
 
-    private byte[] photo;
+
+    @Column(name = "bytes")
+    private byte[] bytes;
 
 }
 

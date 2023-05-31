@@ -2,7 +2,6 @@ package ru.itis.yaylunch.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.apache.bcel.generic.InstructionConstants;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.forms.SignUpForm;
@@ -15,10 +14,7 @@ import ru.itis.yaylunch.repositories.AccountRepository;
 import ru.itis.yaylunch.repositories.ClientRepository;
 import ru.itis.yaylunch.repositories.RestaurantRepository;
 import ru.itis.yaylunch.repositories.SchoolRepository;
-import ru.itis.yaylunch.service.AccountService;
 import ru.itis.yaylunch.service.SignUpService;
-
-import java.util.Locale;
 
 @Slf4j
 @Service
@@ -45,7 +41,7 @@ public class SignUpServiceImpl implements SignUpService {
                     .account(account)
                     .name(form.getName())
                     .build();
-            account.setRestaurants(newRestaurant);
+            account.setRestaurant(newRestaurant);
         } else if (form.getRole().equals(Account.Role.SCHOOL)) {
             School newSchool = School
                     .builder()

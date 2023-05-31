@@ -1,6 +1,7 @@
 package ru.itis.yaylunch.dto.request;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class NewDishRequest {
@@ -11,4 +12,5 @@ public class NewDishRequest {
     private Long protein;
     private Long carbohydrate;
     private Long price;
+    private MultipartFile photo;
 }

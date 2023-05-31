@@ -45,8 +45,9 @@ public class Dish {
     private List<Basket> baskets;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "dish", fetch = FetchType.LAZY)
-    private List<DishPhoto> photos;
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "photo_id")
+    private PhotoEntity photo;
 
 
 }
