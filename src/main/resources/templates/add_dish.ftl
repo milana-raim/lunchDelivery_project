@@ -13,9 +13,12 @@
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">YayLunch</a>
+        <form class="d-flex" action="/profile" method="get">
+            <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
+        </form>
+    </div>
     </div>
 </nav>
-
 <br>
 
 <div class="container">
