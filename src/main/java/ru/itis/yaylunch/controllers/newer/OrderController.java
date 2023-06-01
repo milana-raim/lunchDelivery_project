@@ -34,9 +34,10 @@ public class OrderController {
     }
 
     @PostMapping("/setStatus/{order-id}")
-    public void setStatus(@RequestParam String status,
+    public String setStatus(@RequestParam String status,
                           @PathVariable(name = "order-id") Long orderId) {
         orderService.setStatus(orderId, status);
+        return "redirect:/order/account";
     }
 
     @GetMapping("/account")

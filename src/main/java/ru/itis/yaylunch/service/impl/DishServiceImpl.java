@@ -80,4 +80,15 @@ public class DishServiceImpl implements DishService {
                 .orElseThrow(DishNotFoundException::new);
         return dish.getPhoto();
     }
+
+    @Override
+    public void deleteDish(Long dishId) {
+        Account account = accountService.getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+        Dish dish = dishRepository.getById(dishId);
+        if(dish.getRestaurant().getId().equals(account.getRestaurant().getId())){
+            dishRepository.delete(dish);
+        }
+
+    }
 }

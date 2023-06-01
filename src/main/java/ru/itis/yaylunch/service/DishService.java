@@ -22,4 +22,6 @@ public interface DishService {
     List<DishResponse> getAllByRestaurantRole();
 
     PhotoEntity getImage(Long dishId);
+
+    void deleteDish(Long dishId);
 }

@@ -30,15 +30,13 @@
                     <br>
                     <input type="text" name="calories" id="calories" class="form-control" placeholder="Калории" required>
                     <br>
-                    <input type="text" name="ingredients" class="form-control" placeholder="Ингридиенты" required>
+                    <input type="text" name="ingredients" class="form-control" placeholder="Ингредиенты" required>
                     <br>
                     <input type="text" name="fat" class="form-control" placeholder="Жиры" required>
                     <br>
                     <input type="text" name="protein" class="form-control" placeholder="Белки" required>
                     <br>
                     <input type="text" name="carbohydrate" class="form-control" placeholder="Углеводы" required>
-                    <br>
-                    <input type="text" name="protein" class="form-control" placeholder="Углеводы" required>
                     <br>
                     <input type="text" name="price" class="form-control" placeholder="Цена" required>
                     <br>

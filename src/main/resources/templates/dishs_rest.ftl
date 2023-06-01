@@ -59,8 +59,8 @@
 
                                     <br>
 
-                                    <a href="/dish/edit/${dish.id}">
-                                        <h5 class="card-title pricing-card-title">Редактировать</h5>
+                                    <a href="/dish/delete?dishId=${dish.id}">
+                                        <h5 class="card-title pricing-card-title">Удалить</h5>
                                     </a>
                                 </div>
                             </div>

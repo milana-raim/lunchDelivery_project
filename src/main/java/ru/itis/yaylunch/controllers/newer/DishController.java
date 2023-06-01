@@ -40,4 +40,11 @@ public class DishController {
         dishService.addDish(dishRequest);
         return "add_dish";
     }
+
+    @GetMapping("/delete")
+    public String deleteDish(@RequestParam("dishId") Long dishId) {
+
+        dishService.deleteDish(dishId);
+        return "redirect:/dish";
+    }
 }
