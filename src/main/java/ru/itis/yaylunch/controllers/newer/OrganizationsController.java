@@ -21,8 +21,6 @@ public class OrganizationsController {
     @RequestMapping("/organizations")
     public String hello(Authentication authentication, Model model) {
         model.addAttribute("restList", organizationsService.getAll());
-        System.out.println(organizationsService.getAll());
-
         return "organizations";
     }
 

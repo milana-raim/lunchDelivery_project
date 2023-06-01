@@ -12,4 +12,6 @@ public interface BasketService {
     void addDish(Long  dishId);
     Basket getByAccount();
     void deleteDish(Long dishId);
+
+    void clearBasket(Long id);
 }

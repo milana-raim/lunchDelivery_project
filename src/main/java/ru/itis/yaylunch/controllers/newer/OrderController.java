@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
+import ru.itis.yaylunch.dto.request.NewOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
@@ -51,8 +52,11 @@ public class OrderController {
     }
 
     @PostMapping("/new")
-    public void newOrder(Model model) {
-
+    @ResponseBody
+    public ResponseEntity<Void> newOrder(Model model, NewOrderRequest newOrderRequest) {
+        log.info("newOrderRequest".concat(newOrderRequest.toString()));
+        orderService.orderingDishesFromBasket(newOrderRequest);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping

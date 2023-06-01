@@ -33,10 +33,6 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant")
     @JsonManagedReference
-    private List<Order> orders;
-
-    @OneToMany(mappedBy = "restaurant")
-    @JsonManagedReference
     private List<Dish> dishRespons;
 
     @Override

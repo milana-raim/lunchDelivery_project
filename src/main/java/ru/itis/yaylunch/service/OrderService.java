@@ -1,8 +1,8 @@
 package ru.itis.yaylunch.service;
 
 
-import org.springframework.security.core.Authentication;
 import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
+import ru.itis.yaylunch.dto.request.NewOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
 
@@ -20,4 +20,6 @@ public interface OrderService {
     void addDish(AddDishToOrderRequest request);
 
     void setStatus(Long orderId, String status);
+
+    void orderingDishesFromBasket(NewOrderRequest newOrderRequest);
 }

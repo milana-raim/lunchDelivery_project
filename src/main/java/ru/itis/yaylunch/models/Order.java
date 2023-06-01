@@ -45,8 +45,4 @@ public class Order {
 
     @Column(name = "preference")
     private String preference;
-
-    @ManyToOne
-    @JoinColumn(name = "restaurant")
-    private Restaurant restaurant;
 }

@@ -54,6 +54,10 @@ public class Account {
     @JsonManagedReference
     private Restaurant restaurant;
 
+    @OneToOne(mappedBy = "account", cascade = {CascadeType.ALL})
+    @JsonManagedReference
+    private Basket basket;
+
     @Override
     public String toString() {
         return "Account{" +

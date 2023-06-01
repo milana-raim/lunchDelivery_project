@@ -94,4 +94,10 @@ public class BasketServiceImpl implements BasketService {
 
     }
 
+    @Override
+    public void clearBasket(Long id) {
+        Basket basket = basketRepository.getById(id);
+        basket.setDishes(new ArrayList<>());
+        basketRepository.save(basket);
+    }
 }

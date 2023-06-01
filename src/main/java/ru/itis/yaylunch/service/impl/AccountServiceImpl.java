@@ -242,4 +242,9 @@ public class AccountServiceImpl implements AccountService {
 
         }
     }
+
+    @Override
+    public void save(Account account) {
+        accountRepository.save(account);
+    }
 }

@@ -24,10 +24,10 @@ public class BasketController {
     private final BasketService basketService;
 
     @GetMapping("/addDish")
-    public String addDish(@RequestParam("dishId") Long dishId) {
-
+    @ResponseBody
+    public ResponseEntity<Void> addDish(@RequestParam("dishId") Long dishId) {
         basketService.addDish(dishId);
-        return "redirect:/basket";
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/deleteDish")

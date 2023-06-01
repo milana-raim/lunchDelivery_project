@@ -5,6 +5,39 @@
     <title>YayLunch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Обработчик события отправки формы
+            $('#orderSub').submit(function (event) {
+                // Отменить обычное поведение формы (перезагрузку страницы)
+                event.preventDefault();
+
+                // Получить данные из формы
+                var formData = {
+                    date: $('#date').val(),
+                    preference: $('#preference').val()
+                };
+
+                // Отправить AJAX-запрос
+                $.ajax({
+                    type: 'POST', // или 'GET', в зависимости от вашего API
+                    url: '/order/new',
+                    data: formData,
+                    success: function (response) {
+                        // Обработать успешный ответ от сервера
+                        console.log(response);
+                        // Дополнительные действия по вашему усмотрению
+                    },
+                    error: function (xhr, status, error) {
+                        // Обработать ошибку
+                        console.log(error);
+                    }
+                });
+                document.getElementById('mainCont').innerHTML = '<p class="lead">Ой, что-то пусто...</p>';
+            });
+        });
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
@@ -22,13 +55,12 @@
             <button class="btn btn-outline-success" type="submit">Личный кабинет</button>
         </form>
     </div>
-    </div>
 </nav>
 
 <br>
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div id="mainCont" class="row justify-content-center">
         <#if dishs?size != 0>
             <#list dishs as dish>
 
@@ -70,11 +102,22 @@
                 <br>
             </#list>
             <div class="row justify-content-center">
-                <div class="text-center">
-
-                    <a href="/order/new">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Оформить заказ</button>
-                    </a>
+                <div class="text-center col-md-8">
+                    <form class="form-signin" id="orderSub">
+                        <h5 class="card-title pricing-card-title">Время доставки</h5>
+                        <input type="datetime-local" id="date" name="date" class="form-control"
+                               placeholder="Время доставки" required autofocus>
+                        <br>
+                        <h5 class="card-title pricing-card-title">Детали заказа</h5>
+                        <textarea type="text" name="preference" id="preference" class="form-control"
+                                  placeholder="Детали заказа" required></textarea>
+                        <br>
+                        <button class="btn btn-lg btn-primary btn-block" onclick="confirmOrder()" type="submit">Оформить
+                            заказ
+                        </button>
+                        <br>
+                        <br>
+                    </form>
                 </div>
             </div>
         <#else>

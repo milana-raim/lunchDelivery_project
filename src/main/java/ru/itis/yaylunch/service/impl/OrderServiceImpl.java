@@ -4,21 +4,28 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
+import ru.itis.yaylunch.dto.request.NewOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
 import ru.itis.yaylunch.exceptions.NotFoundException;
 import ru.itis.yaylunch.mapper.OrderMapper;
 import ru.itis.yaylunch.models.Account;
+import ru.itis.yaylunch.models.Basket;
 import ru.itis.yaylunch.models.Dish;
 import ru.itis.yaylunch.models.Order;
 import ru.itis.yaylunch.repositories.OrderRepository;
 import ru.itis.yaylunch.service.AccountService;
+import ru.itis.yaylunch.service.BasketService;
 import ru.itis.yaylunch.service.DishService;
 import ru.itis.yaylunch.service.OrderService;
 
-import java.util.Collections;
-import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
@@ -32,6 +39,8 @@ public class OrderServiceImpl implements OrderService {
     private final AccountService accountService;
 
     private final DishService dishService;
+
+    private final BasketService basketService;
 
     @Override
     public Long create(OrderRequest orderRequest) {
@@ -61,10 +70,6 @@ public class OrderServiceImpl implements OrderService {
             log.info("received list orders for user");
             return orderMapper.toResponse(orderRepository.findAllByClient_Account_Id(account.getId()));
         }
-        if (account.getRole().equals(Account.Role.RESTAURANT)) {
-            log.info("received list orders for the restaurant");
-            return orderMapper.toResponse(orderRepository.findAllByRestaurant_Account_Id(account.getId()));
-        }
         return Collections.emptyList();
     }
 
@@ -91,6 +96,30 @@ public class OrderServiceImpl implements OrderService {
             order.setState(Order.State.READY);
         }
         orderRepository.save(order);
+    }
+
+    @Override
+    public void orderingDishesFromBasket(NewOrderRequest newOrderRequest) {
+        Account account = accountService.getCurrentAccountFromSecurityContext()
+                .orElseThrow(AccountNotFoundException::new);
+        Basket accountBasket = account.getBasket();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.ENGLISH);
+        LocalDateTime date = LocalDateTime.parse(newOrderRequest.date, formatter);
+        Order newOrder = Order
+                .builder()
+                .dishes(new ArrayList<>())
+                .deliveryDate(date)
+                .preference(newOrderRequest.getPreference())
+                .state(Order.State.PAID)
+                .client(account.getClient())
+                .build();
+
+        accountBasket.getDishes().forEach(x -> newOrder.getDishes().add(x));
+
+        basketService.clearBasket(accountBasket.getId());
+
+        orderRepository.save(newOrder);
     }
 
 

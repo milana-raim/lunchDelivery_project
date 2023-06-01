@@ -18,4 +18,6 @@ public interface AccountService {
     ProfileForm getCurrentProfileInfoResponse();
 
     void updateProfile(ProfileForm form);
+
+    void save(Account account);
 }
