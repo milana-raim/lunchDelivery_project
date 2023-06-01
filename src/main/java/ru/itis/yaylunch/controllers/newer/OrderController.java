@@ -34,9 +34,10 @@ public class OrderController {
         orderService.addDish(request);
     }
 
-    @PostMapping("/setStatus/{order-id}")
+    @GetMapping("/setStatus/{order-id}")
     public String setStatus(@RequestParam String status,
                           @PathVariable(name = "order-id") Long orderId) {
+        log.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"+status+orderId);
         orderService.setStatus(orderId, status);
         return "redirect:/order/account";
     }

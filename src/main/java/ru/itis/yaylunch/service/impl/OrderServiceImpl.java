@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(AccountNotFoundException::new);
         if (account.getRole().equals(Account.Role.SCHOOL)) {
             log.info("received list orders for school");
-            return orderMapper.toResponse(orderRepository.findAllByClientSchool_Account_Id(account.getId()));
+            return orderMapper.toResponse(orderRepository.findAllByClient_School_Account_Id(account.getId()));
         }
         if (account.getRole().equals(Account.Role.USER)) {
             log.info("received list orders for user");
@@ -94,6 +94,8 @@ public class OrderServiceImpl implements OrderService {
             order.setState(Order.State.CANCELLED);
         } else if (status.equals(Order.State.READY.toString())) {
             order.setState(Order.State.READY);
+        } else if (status.equals(Order.State.DELIVERED.toString())) {
+            order.setState(Order.State.DELIVERED);
         }
         orderRepository.save(order);
     }
