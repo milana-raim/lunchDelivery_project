@@ -44,15 +44,24 @@
 
                                 </div>
                             </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <#if dish.getPhoto()??>
+                                            <img src="/image/${dish.photo.id}" class="img-fluid mx-auto d-block"
+                                                 style=" max-height: 100px;" alt="Photo"/>
+                                        </#if>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
+                                        <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
+                                        <h5 class="card-title pricing-card-title">Price: ${dish.price}</h5>
 
-                            <div class="card-body">
-                                <h5 class="card-title pricing-card-title">Calories: ${dish.calories}</h5>
-                                <h5 class="card-title pricing-card-title">Ingredients: ${dish.ingredients}</h5>
-                                <h5 class="card-title pricing-card-title">Price: ${dish.price}</h5>
-
-                                <a href="/basket/deleteDish?dishId=${dish.id}">
-                                    <h5 class="card-title pricing-card-title">Удалить</h5>
-                                </a>
+                                        <a href="/basket/deleteDish?dishId=${dish.id}">
+                                            <h5 class="card-title pricing-card-title">Удалить</h5>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
