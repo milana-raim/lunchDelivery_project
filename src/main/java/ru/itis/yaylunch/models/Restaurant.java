@@ -44,4 +44,8 @@ public class Restaurant {
                 ", address=" + address +
                 '}';
     }
+
+    @OneToMany(mappedBy = "restaurant")
+    @JsonManagedReference
+    private List<Order> orders;
 }

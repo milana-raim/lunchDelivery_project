@@ -32,7 +32,6 @@ public class BasketController {
 
     @GetMapping("/deleteDish")
     public String deleteDish(@RequestParam("dishId") Long dishId) {
-
         basketService.deleteDish(dishId);
         return "redirect:/basket";
     }

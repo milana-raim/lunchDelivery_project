@@ -1,4 +1,3 @@
-/*
 package ru.itis.yaylunch.controllers.handler;
 
 import org.springframework.http.HttpStatus;
@@ -49,6 +48,11 @@ public class RestExceptionHandler {
     }
 
     @ExceptionHandler
+    public ResponseEntity<ExceptionEntity> DifferentRestaurantException(DifferentRestaurantException exception){
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).body(ExceptionEntity.builder().message(exception.getMessage()).build());
+    }
+
+    @ExceptionHandler
     public ResponseEntity<ExceptionEntity> LowBalanceExceptionHandler(LowBalanceException exception){
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ExceptionEntity.builder().message(exception.getMessage()).build());
     }
@@ -63,4 +67,3 @@ public class RestExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ExceptionEntity.builder().message(exception.getMessage()).build());
     }
 }
-*/

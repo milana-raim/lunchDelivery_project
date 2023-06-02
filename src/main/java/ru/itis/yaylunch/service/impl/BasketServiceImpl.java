@@ -7,6 +7,7 @@ import ru.itis.yaylunch.dto.request.AddDishToOrderRequest;
 import ru.itis.yaylunch.dto.request.OrderRequest;
 import ru.itis.yaylunch.dto.response.OrderResponse;
 import ru.itis.yaylunch.exceptions.AccountNotFoundException;
+import ru.itis.yaylunch.exceptions.DifferentRestaurantException;
 import ru.itis.yaylunch.exceptions.NotFoundException;
 import ru.itis.yaylunch.mapper.OrderMapper;
 import ru.itis.yaylunch.models.Account;
@@ -41,12 +42,16 @@ public class BasketServiceImpl implements BasketService {
     public void addDish(Long dishId) {
         Account account = accountService.getCurrentAccountFromSecurityContext()
                 .orElseThrow(AccountNotFoundException::new);
-        Optional<Basket> basket = basketRepository.findByAccount_Id(account.getId());
+        Optional<Basket> optionalBasket = basketRepository.findByAccount_Id(account.getId());
         Basket basket1;
         Dish dish = dishRepository.getById(dishId);
-        if(basket.isPresent()) {
-            basket1 = basket.get();
-            basket1.getDishes().add(dish);
+        if (optionalBasket.isPresent()) {
+            basket1 = optionalBasket.get();
+            List<Dish> dishes = basket1.getDishes();
+            if (!dishes.isEmpty() && !dishes.get(dishes.size() - 1).getRestaurant().equals(dish.getRestaurant())) {
+                throw new DifferentRestaurantException();
+            }
+            dishes.add(dish);
             basketRepository.save(basket1);
         } else {
             basket1 = Basket.builder()
@@ -67,7 +72,7 @@ public class BasketServiceImpl implements BasketService {
         Optional<Basket> basket = basketRepository.findByAccount_Id(account.getId());
         Basket basket1;
 
-        if(basket.isPresent()) {
+        if (basket.isPresent()) {
             basket1 = basket.get();
         } else {
             basket1 = Basket.builder()
@@ -86,7 +91,7 @@ public class BasketServiceImpl implements BasketService {
         Optional<Basket> basket = basketRepository.findByAccount_Id(account.getId());
         Basket basket1;
         Dish dish = dishRepository.getById(dishId);
-        if(basket.isPresent()) {
+        if (basket.isPresent()) {
             basket1 = basket.get();
             basket1.getDishes().remove(dish);
             basketRepository.save(basket1);

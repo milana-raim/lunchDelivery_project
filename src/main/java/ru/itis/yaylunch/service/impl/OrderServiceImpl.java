@@ -70,6 +70,10 @@ public class OrderServiceImpl implements OrderService {
             log.info("received list orders for user");
             return orderMapper.toResponse(orderRepository.findAllByClient_Account_Id(account.getId()));
         }
+        if (account.getRole().equals(Account.Role.RESTAURANT)) {
+            log.info("received list orders for the restaurant");
+            return orderMapper.toResponse(orderRepository.findAllByRestaurant_Account_Id(account.getId()));
+        }
         return Collections.emptyList();
     }
 
@@ -117,7 +121,12 @@ public class OrderServiceImpl implements OrderService {
                 .client(account.getClient())
                 .build();
 
-        accountBasket.getDishes().forEach(x -> newOrder.getDishes().add(x));
+        List<Dish> dishes = accountBasket.getDishes();
+        dishes.forEach(x -> newOrder.getDishes().add(x));
+
+        if (!dishes.isEmpty()) {
+            newOrder.setRestaurant(dishes.get(0).getRestaurant());
+        }
 
         basketService.clearBasket(accountBasket.getId());
 

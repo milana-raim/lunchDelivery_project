@@ -45,4 +45,8 @@ public class Order {
 
     @Column(name = "preference")
     private String preference;
+
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
 }
