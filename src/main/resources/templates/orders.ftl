@@ -45,7 +45,7 @@
                             <h5 class="card-title pricing-card-title">Комментарий к заказу: ${order.preference}</h5>
                             <br>
                             <#if user.role == "RESTAURANT">
-                                <#if order.state != "READY">
+                                <#if order.state != "READY" && order.state!= "DELIVERED">
 
                                     <a href="/order/setStatus/${order.id}?status=READY">
                                         <h5 class="card-title pricing-card-title">Готов</h5>
